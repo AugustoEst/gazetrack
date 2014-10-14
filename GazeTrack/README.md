@@ -9,7 +9,7 @@ It works out-of-the-box with the popular **Tobii EyeX** tracker on the **Windows
 Instructions
 ------------
 
-Move the GazeTrack folder to your Processing\libraries folder.
+Move the **GazeTrack** folder to your Processing\libraries folder.
 
 Make sure your Tobii EyeX is installed, pluged in and the Eye Tracking feature is enabled.
 
