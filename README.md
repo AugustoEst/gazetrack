@@ -13,7 +13,7 @@ Extract the library to your Processing\libraries folder.
 
 Make sure your Tobii EyeX is installed, pluged in and the Eye Tracking feature is enabled.
 
-Run *Processing\librariesGazeTrack\examples\GazeTrackEyeXGazeStream\GazeTrackEyeXGazeStream.exe*
+Run *GazeTrack\examples\GazeTrackEyeXGazeStream\GazeTrackEyeXGazeStream.exe*
 
 Import the library to your Processing sketch (import gazetrack.*;)
 
