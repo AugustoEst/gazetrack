@@ -21,12 +21,12 @@ Import the library to your Processing sketch (import gazetrack.*;)
 Using other eye-tracking hardware
 ---------------------------------
 
-The library connects to a UDP connection on port 11000.
+The library uses a **UDP** connection on port **11000**.
 
-It expects a string with the following example messages:
+It expects a string with the following _example messages_:
 
-*"325.2687;769.212"* -> GazeX and GazeY
+**"325.2687;769.212"** / GazeX and GazeY
   
-*"NotPresent"* -> Invokes gazeStopped() (the user's gaze stopped being tracked)    
+**"NotPresent"** / Invokes gazeStopped() (the user's gaze stopped being tracked)    
   
-*"Present"* -> Invokes gazeStarted() (the user's gaze started being tracked)          
+**"Present"** / Invokes gazeStarted() (the user's gaze started being tracked)          
