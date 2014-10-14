@@ -5,6 +5,8 @@ This library enables the use of different eye-trackers on the **Processing** env
 
 It works out-of-the-box with the popular **Tobii EyeX** tracker one the **Windows** platform.
 
+http://forum.processing.org/two/discussion/7606/gazetrack-a-processing-library-for-eye-tracking
+
 
 Instructions
 ------------
@@ -29,4 +31,4 @@ It expects a string with the following example messages:
   
 **"NotPresent"** / Invokes *gazeStopped()* (the user's gaze stopped being tracked)    
   
-**"Present"** / Invokes *gazeStarted()* (the user's gaze started being tracked)          
+**"Present"** / Invokes *gazeStarted()* (the user's gaze started being tracked)
