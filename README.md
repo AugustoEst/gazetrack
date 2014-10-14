@@ -27,6 +27,6 @@ It expects a string with the following example messages:
 
 **"325.2687;769.212"** / GazeX and GazeY
   
-**"NotPresent"** / Invokes gazeStopped() (the user's gaze stopped being tracked)    
+**"NotPresent"** / Invokes *gazeStopped()* (the user's gaze stopped being tracked)    
   
-**"Present"** / Invokes gazeStarted() (the user's gaze started being tracked)          
+**"Present"** / Invokes *gazeStarted()* (the user's gaze started being tracked)          
