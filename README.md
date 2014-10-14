@@ -1,9 +1,9 @@
 GazeTrack
 =========
 
-This library enables the use of different eye-trackers on the Processing environment. 
+This library enables the use of different eye-trackers on the **Processing** environment. 
 
-It works out-of-the-box with the popular Tobii EyeX tracker one the Windows platform.
+It works out-of-the-box with the popular **Tobii EyeX** tracker one the **Windows** platform.
 
 
 Instructions
@@ -23,7 +23,7 @@ Using other eye-tracking hardware
 
 The library uses a **UDP** connection on port **11000**.
 
-It expects a string with the following _example messages_:
+It expects a string with the following example messages:
 
 **"325.2687;769.212"** / GazeX and GazeY
   
