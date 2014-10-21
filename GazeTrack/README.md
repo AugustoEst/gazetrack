@@ -23,7 +23,7 @@ Import the library to your Processing sketch (import gazetrack.*;)
 Using other eye-tracking hardware
 ---------------------------------
 
-The library uses a **UDP** connection on port **11000**.
+The library uses a **UDP** connection on port **11000** (*localhost*).
 
 It expects a string with the following example messages:
 
