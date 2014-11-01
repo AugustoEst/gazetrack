@@ -13,7 +13,7 @@ Instructions
 
 Extract **GazeTrack** to your _Processing\libraries_ folder.
 
-Make sure your Tobii EyeX is installed, pluged in and the Eye Tracking feature is enabled.
+Make sure your Tobii EyeX is installed, plugged in and the Eye Tracking feature is enabled.
 
 Run *GazeTrackEyeXGazeStream\GazeTrackEyeXGazeStream.exe*
 
