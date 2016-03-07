@@ -5,9 +5,8 @@ color backgroundColor;
 
 void setup()
 {
-  size(displayWidth, displayHeight);
+  fullScreen();
   rectMode(CENTER);
-  frameRate(60);
   noStroke();
   fill(#4FA25C);
   
