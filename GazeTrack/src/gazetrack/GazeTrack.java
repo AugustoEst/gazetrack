@@ -1,158 +1,84 @@
-/**
- * GazeTrack: A Processing library for eye-tracking
- * This library enables the use of different eye-trackers on the Processing environment.
- * https://github.com/AugustoEst/gazetrack
- *
- * Copyright (c) 2014 Augusto Esteves http://www.mysecondplace.org
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA  02111-1307  USA
- * 
- * @author      Augusto Esteves http://www.mysecondplace.org
- * @modified    10/14/2014
- * @version     0.0.1 (1)
- */
-
 package gazetrack;
 
 import processing.core.*;
-import java.lang.reflect.Method;
 
+/**
+ * GazeTrack is an eye-tracking library for Processing. It works with most 
+ * commercial Tobii eye-trackers, including the EyeX and the 4C (tested), 
+ * and most Tobii-enabled laptops. 
+ * 
+ * Before you start, make sure the 'TobiiStream.exe' is running and 
+ * displaying gaze data. You can download this application from:
+ * http://hci.soc.napier.ac.uk/GazeTrack/TobiiStream.zip
+ *
+ * @example Basic
+ */
 
-public class GazeTrack
+public class GazeTrack 
 {
-	
-	// myParent is a reference to the parent sketch
 	PApplet myParent;
-	private GazeStream dataStream;
-	private Method gazeStopped, gazeStarted;
-	
+	private TobiiStream gazeStream;
+
 	
 	/**
-	 * a Constructor, usually called in the setup() method in your sketch to
-	 * initialize and start the library.
+	 * The GazeTrack constructor
 	 * 
-	 * @example GazeTrackProcessing
-	 * @param myParent
+	 * @param theParent
 	 */
-	public GazeTrack(PApplet myParent)
+	public GazeTrack(PApplet theParent) 
 	{
-		this.myParent = myParent;
+		myParent = theParent;
 		myParent.registerMethod("dispose", this);
-		initGazeTrackMethods();
-
-		welcome();
 		
-		dataStream = new gazetrack.GazeStream(this);
-	}
-	
-	
-	/**
-	 * Initializes two invoke methods in GazeTrack:
-	 * gazeStopped and gazeStarted
-	 */
-	private void initGazeTrackMethods()
-	{
-		try 
-		{
-			gazeStopped = myParent.getClass().getMethod("gazeStopped");
-		}
-		catch (Exception e) 
-		{ 
-			System.out.println("GazeTrack: missing or wrong 'gazeStopped()' method");
-			gazeStopped = null;
-		}
+		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
 		
-		try 
-		{
-			gazeStarted = myParent.getClass().getMethod("gazeStarted");
-		}
-		catch (Exception e) 
-		{ 
-			System.out.println("GazeTrack: missing or wrong 'gazeStarted()' method");
-			gazeStarted = null;
-		}
+		gazeStream = new TobiiStream();
 	}
-
+				
 	
 	/**
-	 * Invoke method: gazeStopped
-	 * Invoked when the user's gaze stops being tracked
-	 */
-	public void gazeStopped()
-	{
-		if (gazeStopped != null)
-		{
-			try
-			{
-				gazeStopped.invoke(myParent);
-			}
-			catch (Exception e) {}
-		}
-	}
-	
-	
-	/**
-	 * Invoke method: gazeStarted
-	 * Invoked when the user's gaze starts being tracked
-	 */
-	public void gazeStarted()
-	{
-		if (gazeStarted != null)
-		{
-			try
-			{
-				gazeStarted.invoke(myParent);
-			}
-			catch (Exception e) {}
-		}
-	}
-
-		
-	/**
-	 * Welcome message to be shown at the beginning of the execution of the library
-	 */
-	private void welcome()
-	{
-		System.out.println("GazeTrack: A Processing library for eye-tracking (0.0.1) by Augusto Esteves http://www.mysecondplace.org");
-	}
-	
-	
-	/**
-	 * Returns the user's gaze position (X)
-	 * based on the sketch's width
+	 * Returns the user's latest gaze position (X)
 	 * 
-	 * @return
+	 * @return gaze position in x
 	 */
 	public float getGazeX()
 	{
-		return dataStream.getGazeX();
+		return gazeStream.getGazeX();
 	}
 	
 	
 	/**
-	 * Returns the user's gaze position (Y)
-	 * based on the sketch's height
+	 * Returns the user's latest gaze position (Y)
 	 * 
-	 * @return
+	 * @return gaze position in y
 	 */
 	public float getGazeY()
 	{
-		return dataStream.getGazeY();
+		return gazeStream.getGazeY();
 	}
 	
+	
+	/**
+	 * Returns the timestamp for the latest gaze event
+	 * 
+	 * @return timestamp of the last gaze event
+	 */
+	public double getTimestamp()
+	{
+		return gazeStream.getTimestamp();
+	}
+	
+	
+	/**
+	 * Returns true if the eye-tracker is capturing
+     * the user's gaze
+	 * 
+	 * @return true if the user's gaze is present
+	 */
+	public boolean gazePresent()
+	{
+		return gazeStream.gazePresent();
+	}
 	
 	
 	/**
@@ -162,7 +88,7 @@ public class GazeTrack
 	 */
 	public void dispose()
 	{
-		dataStream.terminate();
+		gazeStream.terminate();
 	}
+	
 }
-
