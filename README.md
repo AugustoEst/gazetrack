@@ -23,15 +23,15 @@ The folder structure for Library GazeTrack: Eye-tracking for Processing (Tobii E
 ```
 Processing
   libraries
-    GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C)
+    GazeTrack
       examples
       library
-        GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C).jar
+        GazeTrack.jar
       reference
       src
 ```
              
-Some folders like `examples` or `src` might be missing. After Library GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C) has been successfully installed, restart the Processing application.
+Some folders like `examples` or `src` might be missing. After Library GazeTrack has been successfully installed, restart the Processing application.
 
 ### Troubleshooting
 
