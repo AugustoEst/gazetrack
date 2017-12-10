@@ -75,7 +75,7 @@ public class TobiiStream extends Thread
      */
     public boolean gazePresent()
     {
-    	return gazeState.equals("Present");
+    	return "Present".equals(gazeState);
     }
     
     
@@ -123,17 +123,17 @@ public class TobiiStream extends Thread
             	String streamSource = st.nextToken();
             	
             	// Get data based on the appropriate filter
-            	if (streamSource.equals("TobiiStream"))
+            	if ("TobiiStream".equals(streamSource))
             	{
             		timestamp = Double.parseDouble(st.nextToken());
 	                gazeX = Float.parseFloat(st.nextToken());
 	                gazeY = Float.parseFloat(st.nextToken());
             	}
-            	else if (streamSource.equals("TobiiState")) 
+            	else if ("TobiiState".equals(streamSource)) 
         		{
             		gazeState = st.nextToken();
             		
-            		if (gazeState.equals("Unknown")) System.out.println("##project.name##: "
+            		if ("Unknown".equals(gazeState)) System.out.println("##project.name##: "
             				+ "Cannot find the Tobii eye-tracker. Check if the eye-tracker is connected, "
             				+ "and the Tobii software is running.");
         		}

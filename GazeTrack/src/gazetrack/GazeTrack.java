@@ -16,7 +16,7 @@ import processing.core.*;
 
 public class GazeTrack 
 {
-	PApplet myParent;
+	private PApplet myParent;
 	private TobiiStream gazeStream;
 
 	

@@ -31,3 +31,6 @@ C:\Users\Augusto\Documents\Visual Studio 2015\Projects\TobiiStream\TobiiStream\b
 C:\Users\Augusto\Documents\Visual Studio 2015\Projects\TobiiStream\TobiiStream\bin\x86\Release\ZeroMQ.dll
 C:\Users\Augusto\Documents\Visual Studio 2015\Projects\TobiiStream\TobiiStream\bin\x86\Release\ZeroMQ.xml
 C:\Users\Augusto\Documents\Visual Studio 2015\Projects\TobiiStream\TobiiStream\obj\x86\Release\TobiiStream.csprojResolveAssemblyReference.cache
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\TobiiStream.exe.config
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\obj\x86\Release\TobiiStream.exe
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\obj\x86\Release\TobiiStream.pdb
