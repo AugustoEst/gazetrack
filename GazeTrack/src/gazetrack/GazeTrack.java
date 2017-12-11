@@ -16,7 +16,6 @@ import processing.core.*;
 
 public class GazeTrack 
 {
-	private PApplet myParent;
 	private TobiiStream gazeStream;
 
 	
@@ -27,8 +26,7 @@ public class GazeTrack
 	 */
 	public GazeTrack(PApplet theParent) 
 	{
-		myParent = theParent;
-		myParent.registerMethod("dispose", this);
+		theParent.registerMethod("dispose", this);
 		
 		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
 		
