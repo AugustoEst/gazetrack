@@ -36,3 +36,5 @@ Some folders like `examples` or `src` might be missing. After Library GazeTrack 
 ### Troubleshooting
 
 If you're having trouble, have a look at the [Processing Wiki](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library) for more information, or contact the author [Augusto Esteves](http://hci.soc.napier.ac.uk).
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/303335f286db436782e04b211517e574)](https://www.codacy.com/app/augustoest/gazetrack?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AugustoEst/gazetrack&amp;utm_campaign=Badge_Grade)
