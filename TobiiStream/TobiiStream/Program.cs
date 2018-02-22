@@ -13,14 +13,37 @@ namespace TobiiStream
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("TobiiStream v2.0.2\n");
+
             // For now the library only supports I/O in the same device
-            var ip_address = "tcp://127.0.0.1:5556";
+            var ip_address = "tcp://127.0.0.1";
+            var socket = "5556";
+            var connected = false;
 
             // Define ZMQ properties (http://zeromq.org)
             // We use the PUB-SUB pattern
             // http://zguide.zeromq.org/page:all#Getting-the-Message-Out
             var publisher = new ZSocket(ZSocketType.PUB);
-            publisher.Bind(ip_address);
+
+            // Try to establish a connection using 'ip_address' and 'socket'         
+            while (!connected)
+            { 
+                try
+                {
+                    publisher.Bind(string.Format("{0}:{1}", ip_address, socket));
+                    connected = true;
+                    Console.WriteLine("SUCCESS: The connection to the GazeTrack Processing library has been correctly set up!\n");
+                }
+                catch (ZeroMQ.ZException zmq_ex)
+                {
+                    Console.WriteLine("ERROR: The connection to the GazeTrack Processing library could not be set up!");
+                    Console.WriteLine("The socket port used by TobiiStream.exe to communicate with Processing is already in use by another application.\n");
+                    Console.Write("Type in a new port (e.g., 5656) and press 'Enter': ");
+
+                    socket = Console.ReadLine();
+                    Console.Write("\n");
+                }
+            }
 
             // Make sure that the Tobii eye-tracker is powered,
             // and the tracking software is 'on'
@@ -50,6 +73,9 @@ namespace TobiiStream
                     var stateData = string.Format("{0} {1}", "TobiiState", userPresenceState.Value);
                     Console.WriteLine(stateData);
                     publisher.Send(new ZFrame(stateData));
+
+                    if (userPresenceState.Value.ToString().Equals("Unknown"))
+                        Console.WriteLine("Make sure the Tobii eye-tracker is connected to the computer, and that the Tobii software is running!\n");
                 }
             });
 

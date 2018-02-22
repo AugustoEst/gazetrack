@@ -20,17 +20,46 @@ public class GazeTrack
 
 	
 	/**
-	 * The GazeTrack constructor
+	 * The GazeTrack constructor (default ZMQ socket)
 	 * 
 	 * @param theParent
 	 */
 	public GazeTrack(PApplet theParent) 
 	{
+		init(theParent, "5556");
+	}
+	
+
+	/**
+	 * The GazeTrack constructor (specific ZMQ socket).
+	 * 
+	 * This should be used when the TobiiStream.exe asks
+	 * for a new socket port (due to the default being 
+	 * in use already)
+	 * 
+	 * @param theParent
+	 * @param socket
+	 */
+	public GazeTrack(PApplet theParent, String socket) 
+	{
+		init(theParent, socket);
+	}
+	
+	
+	/**
+	 * Starts the library after the GazeTrack constructor
+	 * is called
+	 * 
+	 * @param theParent
+	 * @param socket
+	 */
+	private void init(PApplet theParent, String socket)
+	{
 		theParent.registerMethod("dispose", this);
 		
 		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
 		
-		gazeStream = new TobiiStream();
+		gazeStream = new TobiiStream(socket);
 	}
 				
 	

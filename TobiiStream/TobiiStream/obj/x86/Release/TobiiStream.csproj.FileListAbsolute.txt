@@ -34,3 +34,17 @@ C:\Users\Augusto\Documents\Visual Studio 2015\Projects\TobiiStream\TobiiStream\o
 C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\TobiiStream.exe.config
 C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\obj\x86\Release\TobiiStream.exe
 C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\obj\x86\Release\TobiiStream.pdb
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\Tobii.EyeX.Client.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\amd64\libzmq.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\amd64\libsodium.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\i386\libzmq.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\i386\libsodium.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\amd64\libzmq.so
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\i386\libzmq.so
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\TobiiStream.exe
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\TobiiStream.pdb
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\Tobii.Interaction.Model.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\Tobii.Interaction.Net.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\ZeroMQ.dll
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\bin\x86\Release\ZeroMQ.xml
+C:\Users\Augusto\Documents\gazetrack\TobiiStream\TobiiStream\obj\x86\Release\TobiiStream.csprojResolveAssemblyReference.cache

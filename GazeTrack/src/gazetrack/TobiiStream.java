@@ -5,6 +5,11 @@ import org.zeromq.ZMQ;
 
 public class TobiiStream extends Thread 
 {
+	// Connection variables
+	// For now the library only supports I/O in the same device
+	private String ip_address = "127.0.0.1";
+	private String socket;
+	
 	// Gaze variables
 	private float gazeX, gazeY;
 	private double timestamp;
@@ -21,14 +26,17 @@ public class TobiiStream extends Thread
      * This requires 'TobiiStream.exe' to be running and displaying 
      * gaze data. You can download this application from:
 	 * https://hci.soc.napier.ac.uk/GazeTrack/TobiiStream.zip
+	 * 
+	 * @param socket
      */
-    public TobiiStream()
+    public TobiiStream(String socket)
     {
         timestamp = -1;
         gazeX = -1; 
         gazeY = -1;
         running = false;
-        gazeState = "Present";
+        gazeState = "Present";		// Present, NotPresent
+        this.socket = socket;
         
         start();
     }
@@ -103,7 +111,7 @@ public class TobiiStream extends Thread
         	ZMQ.Socket jeroSocket = context.socket(ZMQ.SUB);
         	
         	// For now the library only supports I/O in the same device
-        	jeroSocket.connect("tcp://127.0.0.1:5556");
+        	jeroSocket.connect("tcp://" + ip_address + ":" + socket);
         	
         	// Subscribe to two filters: 
         	// TobiiStream: timestamp, x, y
