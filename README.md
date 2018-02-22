@@ -41,8 +41,10 @@ If you're having trouble, have a look at the [Processing Wiki](https://github.co
 
 ### Contribution
 
-If you enjoyed this project, and would like to make a contribution to the project:
+If you enjoyed this project, and would like to make a contribution:
 
 <b>ETH</b>: 0xED6A9bA7d99D8cb55037d9c68C60998eA17eCfC7
+
 <b>BTC</b>: 3QSrrQdET35F2CdaZKSK1PnCrRc7np9mdQ
+
 <b>XLM</b>: GD263F3X5D5ULX7TBXF6ULPGKEICAHJEO22ZOJABNVJSCYPEJW6JBU7G
