@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using ZeroMQ;
 namespace TobiiStream
 {
     class Program
-    {
+    {            
         static void Main(string[] args)
         {
             Console.WriteLine("TobiiStream v2.0.2\n");
@@ -27,7 +28,7 @@ namespace TobiiStream
 
             // Try to establish a connection using 'ip_address' and 'socket'         
             while (!connected)
-            { 
+            {
                 try
                 {
                     publisher.Bind(string.Format("{0}:{1}", ip_address, socket));
@@ -45,23 +46,31 @@ namespace TobiiStream
                 }
             }
 
+            // Make sure we use "." to reference a decimal point
+            // (and not ',' as in some languages (e.g., German)
+            NumberFormatInfo nfi = new NumberFormatInfo();
+            nfi.NumberDecimalSeparator = ".";
+
             // Make sure that the Tobii eye-tracker is powered,
             // and the tracking software is 'on'
             var host = new Host();
 
-            // Prepare to be notified if the user state changes (present, not present)
-            var userPresenceStateObserver = host.States.CreateUserPresenceObserver();
 
             // Create a gaze data stream (timestamp, x, y)
             var gazePointDataStream = host.Streams.CreateGazePointDataStream();
 
             // Print gaze data to the console, and publish it with ZMQ
             // ZMQ subscribe filter: "TobiiStream"
-            gazePointDataStream.GazePoint((x, y, ts) => {
-                var gazeData = string.Format("{0} {1} {2} {3}", "TobiiStream", ts, x, y);
+            gazePointDataStream.GazePoint((x, y, ts) =>
+            {
+                var gazeData = string.Format("{0} {1} {2} {3}", "TobiiStream", ts.ToString(nfi), x.ToString(nfi), y.ToString(nfi));
                 Console.WriteLine(gazeData);
                 publisher.Send(new ZFrame(gazeData));
             });
+
+
+            // Prepare to be notified if the user state changes (present, not present)
+            var userPresenceStateObserver = host.States.CreateUserPresenceObserver();
 
             // If the user state changes, print this to the console
             // and publish it with ZMQ
@@ -79,9 +88,43 @@ namespace TobiiStream
                 }
             });
 
+
+            // Create a eye position data stream. This are the positions of your
+            // eyeballs(eye positions) given in space coordinates (mm) relative 
+            // to the center of the screen
+            var eyePositionDataStream = host.Streams.CreateEyePositionStream();
+
+            eyePositionDataStream.EyePosition(eyePosition =>
+            {
+                var leftEyeData = string.Format("{0} {1} {2} {3} {4} {5} {6} {7}",
+                    "TobiiLeftEye",
+                    (eyePosition.HasLeftEyePosition ? 1 : 0).ToString(nfi),
+                    eyePosition.LeftEye.X.ToString(nfi),
+                    eyePosition.LeftEye.Y.ToString(nfi),
+                    eyePosition.LeftEye.Z.ToString(nfi),
+                    eyePosition.LeftEyeNormalized.X.ToString(nfi),
+                    eyePosition.LeftEyeNormalized.Y.ToString(nfi),
+                    eyePosition.LeftEyeNormalized.Z.ToString(nfi));
+
+                publisher.Send(new ZFrame(leftEyeData));
+
+                var rightEyeData = string.Format("{0} {1} {2} {3} {4} {5} {6} {7}",
+                    "TobiiRightEye",
+                    (eyePosition.HasRightEyePosition ? 1 : 0).ToString(nfi),
+                    eyePosition.RightEye.X.ToString(nfi),
+                    eyePosition.RightEye.Y.ToString(nfi),
+                    eyePosition.RightEye.Z.ToString(nfi),
+                    eyePosition.RightEyeNormalized.X.ToString(nfi),
+                    eyePosition.RightEyeNormalized.Y.ToString(nfi),
+                    eyePosition.RightEyeNormalized.Z.ToString(nfi));
+
+                publisher.Send(new ZFrame(rightEyeData));
+            });
+
+
             // Quit on key press
             Console.ReadKey();
             host.DisableConnection();
         }
-    }
+    }     
 }
