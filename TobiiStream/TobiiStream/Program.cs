@@ -14,7 +14,7 @@ namespace TobiiStream
     {            
         static void Main(string[] args)
         {
-            Console.WriteLine("TobiiStream v2.0.2\n");
+            Console.WriteLine("TobiiStream v2.0.3\n");
 
             // For now the library only supports I/O in the same device
             var ip_address = "tcp://127.0.0.1";
@@ -90,7 +90,7 @@ namespace TobiiStream
 
 
             // Create a eye position data stream. This are the positions of your
-            // eyeballs(eye positions) given in space coordinates (mm) relative 
+            // eyeballs (eye positions) given in space coordinates (mm) relative 
             // to the center of the screen
             var eyePositionDataStream = host.Streams.CreateEyePositionStream();
 

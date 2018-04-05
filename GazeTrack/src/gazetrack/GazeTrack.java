@@ -17,17 +17,14 @@ import processing.core.*;
 public class GazeTrack 
 {
 	private TobiiStream gazeStream;
-
+	private int sketchWidth, sketchHeight;
 	
 	/**
 	 * The GazeTrack constructor (default ZMQ socket)
 	 * 
 	 * @param theParent
 	 */
-	public GazeTrack(PApplet theParent) 
-	{
-		init(theParent, "5556");
-	}
+	public GazeTrack(PApplet theParent)						{ init(theParent, "5556"); }
 	
 
 	/**
@@ -40,10 +37,7 @@ public class GazeTrack
 	 * @param theParent
 	 * @param socket
 	 */
-	public GazeTrack(PApplet theParent, String socket) 
-	{
-		init(theParent, socket);
-	}
+	public GazeTrack(PApplet theParent, String socket)		{ init(theParent, socket); }
 	
 	
 	/**
@@ -55,6 +49,9 @@ public class GazeTrack
 	 */
 	private void init(PApplet theParent, String socket)
 	{
+		sketchWidth = theParent.sketchWidth();
+		sketchHeight = theParent.sketchHeight();
+		
 		theParent.registerMethod("dispose", this);
 		
 		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
@@ -68,21 +65,15 @@ public class GazeTrack
 	 * 
 	 * @return gaze position in x
 	 */
-	public float getGazeX()
-	{
-		return gazeStream.getGazeX();
-	}
+	public float getGazeX()									{ return gazeStream.getGazeX(); }
 	
 	
 	/**
 	 * Returns the user's latest gaze position (Y)
 	 * 
-	 * @return gaze position in y
+	 * @return gaze position in y							
 	 */
-	public float getGazeY()
-	{
-		return gazeStream.getGazeY();
-	}
+	public float getGazeY()									{ return gazeStream.getGazeY(); }
 	
 	
 	/**
@@ -90,10 +81,7 @@ public class GazeTrack
 	 * 
 	 * @return timestamp of the last gaze event
 	 */
-	public double getTimestamp()
-	{
-		return gazeStream.getTimestamp();
-	}
+	public double getTimestamp()							{ return gazeStream.getTimestamp(); }
 	
 	
 	/**
@@ -102,10 +90,133 @@ public class GazeTrack
 	 * 
 	 * @return true if the user's gaze is present
 	 */
-	public boolean gazePresent()
-	{
-		return gazeStream.gazePresent();
-	}
+	public boolean gazePresent()							{ return gazeStream.gazePresent(); }
+	
+	
+	/**
+     * Returns true if the user's left eye is
+     * being captured by the Tobii camera
+     * 
+     * @return true if user's left eye is present
+     */
+	public boolean leftEyePresent()							{ return gazeStream.leftEyePresent(); }
+	
+	
+	/**
+     * Returns the user's left eye position.
+     * This is the X position given in space coordinates (mm)  
+     * relative to the center of the screen
+     * 
+     * @return left eye position in x (mm)
+     */
+    public float getLeftEyeXmm()							{ return gazeStream.getLeftEyeX(); }
+    
+    
+    /**
+     * Returns the user's left eye position.
+     * This is the Y position given in space coordinates (mm)  
+     * relative to the center of the screen
+     * 
+     * @return left eye position in y (mm)
+     */
+    public float getLeftEyeYmm()							{ return gazeStream.getLeftEyeY(); }
+   
+    
+    /**
+     * Returns the user's left eye position.
+     * This is the Z position given in space coordinates (mm)  
+     * relative to the center of the screen
+     * 
+     * @return left eye position in z (mm)
+     */
+    public float getLeftEyeZ()								{ return gazeStream.getLeftEyeZ(); }
+    
+    
+    /**
+     * Returns the user's left eye position (X)
+     * 
+     * @return left left eye position in x (normalized)
+     */ 
+    public float getLeftEyeX()  							{ return sketchWidth - gazeStream.getLeftEyeNormX() * sketchWidth; }
+    
+    
+    /**
+     * Returns the user's left eye position (Y)
+     * 
+     * @return left eye position in y (normalized)
+     */
+    public float getLeftEyeY()								{ return gazeStream.getLeftEyeNormY() * sketchHeight; }
+    
+    
+    /**
+     * Returns the user's left eye (normalized) position (Z)
+     * 
+     * @return left eye position in z (normalized)
+     */
+    public float getLeftEyeNormZ()							{ return gazeStream.getLeftEyeNormZ(); }
+	
+	
+	/**
+     * Returns true if the user's right eye is
+     * being captured by the Tobii camera
+     * 
+     * @return true if user's right eye is present
+     */
+	public boolean rightEyePresent()						{ return gazeStream.rightEyePresent(); }
+	
+	
+	/**
+     * Returns the user's right eye position.
+     * This is the X position given in space coordinates (mm)  
+     * relative to the center of the screen
+     * 
+     * @return right eye position in x (mm)
+     */
+    public float getRightEyeXmm()							{ return gazeStream.getRightEyeX(); }
+    
+    
+    /**
+     * Returns the user's right eye position.
+     * This is the Y position given in space coordinates (mm)  
+     * relative to the center of the screen
+     * 
+     * @return right eye position in y (mm)
+     */
+    public float getRightEyeYmm()							{ return gazeStream.getRightEyeY(); }
+   
+    
+    /**
+     * Returns the user's right eye position.
+     * This is the Z position given in space coordinates (mm)  
+     * relative to the center of the screen
+     * 
+     * @return right eye position in z (mm)
+     */
+    public float getRightEyeZ()								{ return gazeStream.getRightEyeZ(); }
+    
+    
+    /**
+     * Returns the user's right eye position (X)
+     * 
+     * @return right right eye position in x
+     */
+    public float getRightEyeX()  							{ return sketchWidth - gazeStream.getRightEyeNormX() * sketchWidth; }
+    
+    
+    /**
+     * Returns the user's right eye position (Y)
+     * 
+     * @return right eye position in y
+     */
+    public float getRightEyeY()								{ return gazeStream.getRightEyeNormY() * sketchHeight; }
+    
+    
+    /**
+     * Returns the user's right eye (normalized) position (Z)
+     * 
+     * @return right eye position in z (normalized)
+     */
+    public float getRightEyeNormZ()							{ return gazeStream.getRightEyeNormZ(); }
 	
 	
 	/**
@@ -113,9 +224,5 @@ public class GazeTrack
 	 * sketch shuts down. For instance, this might shut down a thread
 	 * used by this library
 	 */
-	public void dispose()
-	{
-		gazeStream.terminate();
-	}
-	
+	public void dispose()									{ gazeStream.terminate(); }
 }
