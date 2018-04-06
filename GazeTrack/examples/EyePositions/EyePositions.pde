@@ -48,10 +48,12 @@ void setup()
 void draw() 
 {
   background(255);
-  
-  // Draws the left eye if present
+      
+  // Draws the LEFT eye if present
   if (gazeTrack.leftEyePresent())
   {
+    // Defines the size of the eye icon, depending on how close or far away
+    // the user is from the display
     float eye_size = 50 / gazeTrack.getLeftEyeNormZ();
     
     shape(eye_pic, gazeTrack.getLeftEyeX(), gazeTrack.getLeftEyeY(), eye_size, eye_size);
@@ -59,12 +61,15 @@ void draw()
     println("Left eye is present:");
     println("X: " + gazeTrack.getLeftEyeXmm() + "mm from the center of the screen");
     println("Y: " + gazeTrack.getLeftEyeYmm() + "mm from the center of the screen");
+    println("Z: " + gazeTrack.getLeftEyeZ() + "mm from the display");
     println();
   }
   
-  // Draws the right eye if present
+  // Draws the RIGHT eye if present
   if (gazeTrack.rightEyePresent())
   {
+    // Defines the size of the eye icon, depending on how close 
+    // or far away the user is from the display
     float eye_size = 50 / gazeTrack.getRightEyeNormZ();
     
     shape(eye_pic, gazeTrack.getRightEyeX(), gazeTrack.getRightEyeY(), eye_size, eye_size);
@@ -72,6 +77,7 @@ void draw()
     println("Right eye is present:");
     println("X: " + gazeTrack.getRightEyeXmm() + "mm from the center of the screen");
     println("Y: " + gazeTrack.getRightEyeYmm() + "mm from the center of the screen");
+    println("Z: " + gazeTrack.getRightEyeZ() + "mm from the display");
     println();
   }
 }
