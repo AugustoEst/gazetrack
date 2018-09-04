@@ -19,12 +19,6 @@ http://hci.soc.napier.ac.uk/GazeTrack/TobiiStream.zip
 by Augusto Esteves
 http://hci.soc.napier.ac.uk
 https://github.com/AugustoEst/gazetrack
-
-If you enjoyed this demo, 
-and would like to make a contribution to the project:
-ETH: 0xED6A9bA7d99D8cb55037d9c68C60998eA17eCfC7
-BTC: 3QSrrQdET35F2CdaZKSK1PnCrRc7np9mdQ
-XLM: GD263F3X5D5ULX7TBXF6ULPGKEICAHJEO22ZOJABNVJSCYPEJW6JBU7G
 */
 
 import gazetrack.*;
