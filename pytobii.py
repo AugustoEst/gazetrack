@@ -9,6 +9,7 @@ Before you run this, make sure the
 Tobii eye-tracker (EyeX, 4C) is connected
 to the computer, and that the Tobii software 
 is running and calibrated to your eyes.
+
 Finally, make sure the 'TobiiStream.exe' is 
 running and displaying gaze data. You can
 download this application from:
@@ -28,17 +29,18 @@ ctx = zmq.Context()
 s = ctx.socket(zmq.SUB)
 s.connect("tcp://127.0.0.1:5556")
 
-# Subscribes to all data streams:
-# TobiiState, TobiiStream, TobiiLeftEye, TobiiRightEye
+# Uncomment to subscribe to all data streams:
+# TobiiStream, TobiiState, TobiiLeftEye, TobiiRightEye, TobiiHeadPose
 # s.setsockopt_string(zmq.SUBSCRIBE,'')
 
-# Subscribes to the eye position data streams.
-# These are the positions of the user's eyeballs given in 
-# space coordinates (mm) relative to the center of the screen:
-# eye available (0, 1), x, y, z, normalized_x, normalized_y, normalized_z
+# Uncomment to subscribe to the eye position data streams (TobiiLeftEye, TobiiRightEye)
+# These are the positions of the user's eyeballs given in space coordinates (mm)
+# relative to the center of the screen: # eye available (0, 1), x, y, z, 
+# normalized_x, normalized_y, normalized_z
 # s.setsockopt_string(zmq.SUBSCRIBE,'TobiiLeftEye')
 # s.setsockopt_string(zmq.SUBSCRIBE,'TobiiRightEye')
 
+# Basic example where we subscribe to solely TobiiStream and TobiiState
 s.setsockopt_string(zmq.SUBSCRIBE,'TobiiStream')
 s.setsockopt_string(zmq.SUBSCRIBE,'TobiiState')			# present, not present
 
