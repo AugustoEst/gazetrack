@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+// using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+// using System.Linq;
+// using System.Text;
+// using System.Threading.Tasks;
 using Tobii.Interaction;
-using Tobii.Interaction.Framework;
+// using Tobii.Interaction.Framework;
 using ZeroMQ;
 
 namespace TobiiStream
@@ -14,7 +14,7 @@ namespace TobiiStream
     {            
         static void Main(string[] args)
         {
-            Console.WriteLine("TobiiStream v2.0.3\n");
+            Console.WriteLine("TobiiStream v2.0.4\n");
 
             // For now the library only supports I/O in the same device
             var ip_address = "tcp://127.0.0.1";
@@ -58,6 +58,7 @@ namespace TobiiStream
 
             // Create a gaze data stream (timestamp, x, y)
             var gazePointDataStream = host.Streams.CreateGazePointDataStream();
+            Console.WriteLine("Stream Timestamp Gaze_X Gaze_Y");
 
             // Print gaze data to the console, and publish it with ZMQ
             // ZMQ subscribe filter: "TobiiStream"
@@ -89,9 +90,9 @@ namespace TobiiStream
             });
 
 
-            // Create a eye position data stream. This are the positions of your
-            // eyeballs (eye positions) given in space coordinates (mm) relative 
-            // to the center of the screen
+            // Create a eye position data stream. This includes the positions of the
+            // user's eyeballs given in space coordinates (mm) relative to the
+            // center of the screen
             var eyePositionDataStream = host.Streams.CreateEyePositionStream();
 
             eyePositionDataStream.EyePosition(eyePosition =>
@@ -119,6 +120,25 @@ namespace TobiiStream
                     eyePosition.RightEyeNormalized.Z.ToString(nfi));
 
                 publisher.Send(new ZFrame(rightEyeData));
+            });
+
+
+            // Create a head pose data stream. This includes the position and rotation
+            // of the user's head given relative to the center of the screen
+            var headPoseDataStream = host.Streams.CreateHeadPoseStream();
+
+            headPoseDataStream.HeadPose((ts, position, rotation) =>
+            {
+                var headPoseData = string.Format("{0} {1} {2} {3} {4} {5} {6}",
+                    "TobiiHeadPose",
+                    position.X.ToString(nfi),
+                    position.Y.ToString(nfi),
+                    position.Z.ToString(nfi),
+                    rotation.X.ToString(nfi),
+                    rotation.Y.ToString(nfi),
+                    rotation.Z.ToString(nfi));
+
+                publisher.Send(new ZFrame(headPoseData));
             });
 
 

@@ -94,8 +94,8 @@ public class GazeTrack
 	
 	
 	/**
-     * Returns true if the user's left eye is
-     * being captured by the Tobii camera
+     * Returns true if the eye-tracker is capturing
+     * the user's left eye
      * 
      * @return true if user's left eye is present
      */
@@ -129,11 +129,11 @@ public class GazeTrack
      * 
      * @return left eye position in z (mm)
      */
-    public float getLeftEyeZ()								{ return gazeStream.getLeftEyeZ(); }
+    public float getLeftEyeZmm()							{ return gazeStream.getLeftEyeZ(); }
     
     
     /**
-     * Returns the user's left eye position (X)
+     * Returns the user's left eye position (normalized X)
      * 
      * @return left left eye position in x (normalized)
      */ 
@@ -141,7 +141,7 @@ public class GazeTrack
     
     
     /**
-     * Returns the user's left eye position (Y)
+     * Returns the user's left eye position (normalized Y)
      * 
      * @return left eye position in y (normalized)
      */
@@ -149,16 +149,16 @@ public class GazeTrack
     
     
     /**
-     * Returns the user's left eye (normalized) position (Z)
+     * Returns the user's left eye position (normalized Z)
      * 
      * @return left eye position in z (normalized)
      */
-    public float getLeftEyeNormZ()							{ return gazeStream.getLeftEyeNormZ(); }
+    public float getLeftEyeZ()								{ return gazeStream.getLeftEyeNormZ(); }
 	
 	
 	/**
-     * Returns true if the user's right eye is
-     * being captured by the Tobii camera
+     * Returns true if the eye-tracker is capturing
+     * the user's right eye
      * 
      * @return true if user's right eye is present
      */
@@ -192,13 +192,13 @@ public class GazeTrack
      * 
      * @return right eye position in z (mm)
      */
-    public float getRightEyeZ()								{ return gazeStream.getRightEyeZ(); }
+    public float getRightEyeZmm()							{ return gazeStream.getRightEyeZ(); }
     
     
     /**
-     * Returns the user's right eye position (X)
-     * 
-     * @return right right eye position in x
+     * Returns the user's right eye position (normalized X)
+     *  
+     * @return right right eye position in x (normalized)
      */
     public float getRightEyeX()  							{ return sketchWidth - gazeStream.getRightEyeNormX() * sketchWidth; }
     
@@ -206,17 +206,65 @@ public class GazeTrack
     /**
      * Returns the user's right eye position (Y)
      * 
-     * @return right eye position in y
+     * @return right eye position in y (normalized)
      */
     public float getRightEyeY()								{ return gazeStream.getRightEyeNormY() * sketchHeight; }
     
     
     /**
-     * Returns the user's right eye (normalized) position (Z)
+     * Returns the user's right eye position (normalized Z)
      * 
      * @return right eye position in z (normalized)
      */
-    public float getRightEyeNormZ()							{ return gazeStream.getRightEyeNormZ(); }
+    public float getRightEyeZ()								{ return gazeStream.getRightEyeNormZ(); }
+    
+    
+    /**
+     * Returns the user's head position (X)
+     * 
+     * @return head position in x
+     */
+    public float getHeadPositionX()							{ return gazeStream.getHeadPositionX(); }
+    
+    
+    /**
+     * Returns the user's head position (Y)
+     * 
+     * @return head position in y
+     */
+    public float getHeadPositionY()							{ return gazeStream.getHeadPositionY(); }
+    
+    
+    /**
+     * Returns the user's head position (Z)
+     * 
+     * @return head position in z
+     */
+    public float getHeadPositionZ()							{ return gazeStream.getHeadPositionZ(); }
+    
+    
+    /**
+     * Returns the user's head rotation (Pitch)
+     * 
+     * @return head rotation (pitch)
+     */
+    public float getHeadRotationX()							{ return gazeStream.getHeadRotationX(); }
+    
+    
+    /**
+     * Returns the user's head rotation (Yaw)
+     * 
+     * @return head rotation (yaw)
+     */
+    public float getYaw()							{ return gazeStream.getHeadRotationY(); }
+    
+    
+    /**
+     * Returns the user's head rotation (Roll)
+     * 
+     * @return head rotation (roll)
+     */
+    public float getHeadRotationZ()							{ return gazeStream.getHeadRotationZ(); }
 	
 	
 	/**

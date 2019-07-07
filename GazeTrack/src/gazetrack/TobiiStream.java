@@ -25,6 +25,10 @@ public class TobiiStream extends Thread
 	private float rightEyeX, rightEyeY, rightEyeZ;
 	private float rightEyeNormX, rightEyeNormY, rightEyeNormZ;
 	
+	// Head pose variables
+	private float headPositionX, headPositionY, headPositionZ;
+	private float headRotationX, headRotationY, headRotationZ;
+	
 	// Thread variables
     private boolean running;
 
@@ -41,10 +45,12 @@ public class TobiiStream extends Thread
      */
     public TobiiStream(String socket)
     {
+    	/*
         timestamp = -1;
         gazeX = -1; 
         gazeY = -1;
         
+        /*
         leftEyePresent = 0;			// 0 (not present), 1 (present)
         leftEyeX = -1;
         leftEyeY = -1;
@@ -60,6 +66,7 @@ public class TobiiStream extends Thread
         rightEyeNormX = -1;
         rightEyeNormY = -1;
         rightEyeNormZ = -1;
+        */
         
         running = false;
         gazeState = "Present";		// Present, NotPresent
@@ -86,7 +93,7 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns the user's gaze position (Y)
+     * Returns the timestamp for the latest event
      * 
      * @return timestamp of the last gaze event
      */
@@ -103,8 +110,8 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns true if the user's left eye is
-     * being captured by the Tobii camera
+     * Returns true if the eye-tracker is capturing
+     * the user's left eye
      * 
      * @return true if user's left eye is present
      */
@@ -142,7 +149,7 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns the user's left eye (normalized) position (X)
+     * Returns the user's left eye position (normalized X)
      * 
      * @return left left eye position in x (normalized)
      */
@@ -150,7 +157,7 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns the user's left eye (normalized) position (Y)
+     * Returns the user's left eye position (normalized Y)
      * 
      * @return left eye position in y (normalized)
      */
@@ -158,7 +165,7 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns the user's left eye (normalized) position (Z)
+     * Returns the user's left eye position (normalized Z)
      * 
      * @return left eye position in z (normalized)
      */
@@ -166,8 +173,8 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns true if the user's right eye is
-     * being captured by the Tobii camera
+     * Returns true if the eye-tracker is capturing
+     * the user's right eye
      * 
      * @return true if user's right eye is present
      */
@@ -205,7 +212,7 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns the user's right eye (normalized) position (X)
+     * Returns the user's right eye position (normalized X)
      * 
      * @return right eye position in x (normalized)
      */
@@ -213,7 +220,7 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns the user's right eye (normalized) position (Y)
+     * Returns the user's right eye position (normalized Y)
      * 
      * @return right eye position in y (normalized)
      */
@@ -221,11 +228,59 @@ public class TobiiStream extends Thread
     
     
     /**
-     * Returns the user's right eye (normalized) position (Z)
+     * Returns the user's right eye position (normalized Z)
      * 
      * @return right eye position in z (normalized)
      */
     public float getRightEyeNormZ()		{ return rightEyeNormZ; }
+    
+    
+    /**
+     * Returns the user's head position (X)
+     * 
+     * @return head position in x
+     */
+    public float getHeadPositionX()		{ return headPositionX; }
+    
+    
+    /**
+     * Returns the user's head position (Y)
+     * 
+     * @return head position in y
+     */
+    public float getHeadPositionY()		{ return headPositionY; }
+    
+    
+    /**
+     * Returns the user's head position (Z)
+     * 
+     * @return head position in z
+     */
+    public float getHeadPositionZ()		{ return headPositionZ; }
+    
+    
+    /**
+     * Returns the user's head rotation (X)
+     * 
+     * @return head rotation in x
+     */
+    public float getHeadRotationX()		{ return headRotationX; }
+    
+    
+    /**
+     * Returns the user's head rotation (Y)
+     * 
+     * @return head rotation in y
+     */
+    public float getHeadRotationY()		{ return headRotationY; }
+    
+    
+    /**
+     * Returns the user's head rotation (Z)
+     * 
+     * @return head rotation in z
+     */
+    public float getHeadRotationZ()		{ return headRotationZ; }
     
     
     /**
@@ -254,15 +309,17 @@ public class TobiiStream extends Thread
         	// For now the library only supports I/O in the same device
         	jeroSocket.connect("tcp://" + ip_address + ":" + socket);
         	
-        	// Subscribe to four filters: 
+        	// Subscribe to five streams: 
         	// TobiiStream:		timestamp, x, y
         	// TobiiState: 		Unknown, Present, NotPresent
         	// TobiiLeftEye: 	leftEyePresent, leftEyeX, leftEyeY, leftEyeZ, leftEyeNormX, leftEyeNormY, leftEyeNormZ
-        	// TobiiRightEye:	rightEyePresent, rightEyeX, rightEyeY, rightEyeZ, rightEyeNormX, rightEyeNormY, rightEyeNormZ;
+        	// TobiiRightEye:	rightEyePresent, rightEyeX, rightEyeY, rightEyeZ, rightEyeNormX, rightEyeNormY, rightEyeNormZ
+        	// TobiiHeadPose:	headPositionX, headPositionY, headPositionZ, headRotationX, headRotationY, headRotationZ
         	jeroSocket.subscribe("TobiiStream".getBytes(ZMQ.CHARSET));
         	jeroSocket.subscribe("TobiiState".getBytes(ZMQ.CHARSET));
         	jeroSocket.subscribe("TobiiLeftEye".getBytes(ZMQ.CHARSET));
         	jeroSocket.subscribe("TobiiRightEye".getBytes(ZMQ.CHARSET));
+        	jeroSocket.subscribe("TobiiHeadPose".getBytes(ZMQ.CHARSET));
             
             while (running)
             {      
@@ -317,6 +374,16 @@ public class TobiiStream extends Thread
             		rightEyeNormX = Float.parseFloat(st.nextToken());
             		rightEyeNormY = Float.parseFloat(st.nextToken());
             		rightEyeNormZ = Float.parseFloat(st.nextToken());
+            	}
+            	else if ("TobiiHeadPose".equals(streamSource))
+            	{            		
+            		headPositionX = Float.parseFloat(st.nextToken());
+            		headPositionY = Float.parseFloat(st.nextToken());
+            		headPositionZ = Float.parseFloat(st.nextToken());
+            		
+            		headRotationX = Float.parseFloat(st.nextToken());
+            		headRotationY = Float.parseFloat(st.nextToken());
+            		headRotationZ = Float.parseFloat(st.nextToken());
             	}
             }
             jeroSocket.close();
