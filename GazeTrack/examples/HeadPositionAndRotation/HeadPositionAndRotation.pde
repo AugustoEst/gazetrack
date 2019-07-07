@@ -76,9 +76,9 @@ void draw()
     float headZ = map(gazeTrack.getHeadPositionZ(), 0, 1000, 500, 50);  // Use the z-axis to vary the emoticon size
     
     // Calculate the latest rotations
-    float currentYaw = gazeTrack.getHeadRotationY();
-    float currentPitch = gazeTrack.getHeadRotationX();
-    float currentRoll = gazeTrack.getHeadRotationZ();
+    float currentYaw = gazeTrack.getHeadYaw();
+    float currentPitch = gazeTrack.getHeadPitch();
+    float currentRoll = gazeTrack.getHeadRoll();
     
     if (currentYaw > LOOK_LEFT_THRESHOLD) shape(look_left, headX, headY, headZ, headZ);         // Draw 'left' emoticon
     else if (currentYaw < LOOK_RIGHT_THRESHOLD) shape(look_right, headX, headY, headZ, headZ);  // Draw 'right' emoticon  

@@ -248,7 +248,7 @@ public class GazeTrack
      * 
      * @return head rotation (pitch)
      */
-    public float getHeadRotationX()							{ return gazeStream.getHeadRotationX(); }
+    public float getHeadPitch()								{ return gazeStream.getHeadRotationX(); }
     
     
     /**
@@ -256,7 +256,7 @@ public class GazeTrack
      * 
      * @return head rotation (yaw)
      */
-    public float getYaw()							{ return gazeStream.getHeadRotationY(); }
+    public float getHeadYaw()								{ return gazeStream.getHeadRotationY(); }
     
     
     /**
@@ -264,7 +264,7 @@ public class GazeTrack
      * 
      * @return head rotation (roll)
      */
-    public float getHeadRotationZ()							{ return gazeStream.getHeadRotationZ(); }
+    public float getHeadRoll()								{ return gazeStream.getHeadRotationZ(); }
 	
 	
 	/**
