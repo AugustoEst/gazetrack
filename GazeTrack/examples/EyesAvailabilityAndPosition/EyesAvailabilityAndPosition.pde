@@ -63,16 +63,16 @@ void draw()
       updateRightEyePosition();
       printRightEyeInfo();
             
-      // Draw 'no left' emoticon
+      // Draw the 'no left' emoticon
       image(no_left, width/2, latestEyeY, latestEyeZ, latestEyeZ);
     }
     else if (!gazeTrack.rightEyePresent())
     {
-      // The left eye is not available, use the information from the right eye
+      // The right eye is not available, use the information from the left eye
       updateLeftEyePosition();
       printLeftEyeInfo();
       
-      // Draw 'no left' emoticon
+      // Draw the 'no right' emoticon
       image(no_right, width/2, latestEyeY, latestEyeZ, latestEyeZ);
     }
     else
