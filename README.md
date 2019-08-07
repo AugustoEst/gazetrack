@@ -1,34 +1,40 @@
-GazeTrack
-=========
+## How to install GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C)
 
-This library enables the use of different eye-trackers on the **Processing** environment. 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/262d7e362e1a44c89b2c242c33cacf66)](https://www.codacy.com/app/augustoest/gazetrack?utm_source=github.com&utm_medium=referral&utm_content=AugustoEst/gazetrack&utm_campaign=badger)
 
-It works out-of-the-box with the popular **Tobii EyeX** tracker on the **Windows** platform.
+### Install with the Contribution Manager
 
-http://forum.processing.org/two/discussion/7606/gazetrack-a-processing-library-for-eye-tracking
+Add contributed Libraries by selecting the menu item _Sketch_ → _Import Library..._ → _Add Library..._ This will open the Contribution Manager, where you can browse for GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C), or any other Library you want to install.
 
+Not all available Libraries have been converted to show up in this menu. If a Library isn't there, it will need to be installed manually by following the instructions below.
 
-Instructions
-------------
+### Manual Install
 
-Extract **GazeTrack** to your _Processing\libraries_ folder.
+Contributed Libraries may be downloaded separately and manually placed within the `libraries` folder of your Processing sketchbook. To find (and change) the Processing sketchbook location on your computer, open the Preferences window from the Processing application (PDE) and look for the "Sketchbook location" item at the top.
 
-Make sure your Tobii EyeX is installed, plugged in and the Eye Tracking feature is enabled.
+By default the following locations are used for your sketchbook folder: 
+  * For Mac users, the sketchbook folder is located inside `~/Documents/Processing` 
+  * For Windows users, the sketchbook folder is located inside `My Documents/Processing`
 
-Run *GazeTrackEyeXGazeStream\GazeTrackEyeXGazeStream.exe*
+Download GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C) from http://hci.soc.napier.ac.uk/GazeTrack/
 
-Import the library to your Processing sketch (import gazetrack.*;)
+Unzip and copy the contributed Library's folder into the `libraries` folder in the Processing sketchbook. You will need to create this `libraries` folder if it does not exist.
 
+The folder structure for Library GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C) should be as follows:
 
-Using other eye-tracking hardware
----------------------------------
+```
+Processing
+  libraries
+    GazeTrack
+      examples
+      library
+        GazeTrack.jar
+      reference
+      src
+```
+             
+Some folders like `examples` or `src` might be missing. After Library GazeTrack has been successfully installed, restart the Processing application.
 
-The library uses a **UDP** connection on port **11000** (*localhost*).
+### Troubleshooting
 
-It expects a string with the following example messages:
-
-**"325.268;769.212"** / GazeX and GazeY
-  
-**"NotPresent"** / Invokes *gazeStopped()* (the user's gaze stopped being tracked)    
-  
-**"Present"** / Invokes *gazeStarted()* (the user's gaze started being tracked)
+If you're having trouble, have a look at the [Processing Wiki](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library) for more information, or contact the author [Augusto Esteves](http://hci.soc.napier.ac.uk).
