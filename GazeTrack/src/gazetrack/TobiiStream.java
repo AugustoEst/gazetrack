@@ -39,7 +39,7 @@ public class TobiiStream extends Thread
      * 
      * This requires 'TobiiStream.exe' to be running and displaying 
      * gaze data. You can download this application from:
-	 * https://hci.soc.napier.ac.uk/GazeTrack/TobiiStream.zip
+	 * http://web.tecnico.ulisboa.pt/augusto.esteves/GazeTrack/TobiiStream.zip
 	 * 
 	 * @param socket
      */

@@ -13,13 +13,13 @@ is running and calibrated to your eyes.
 Finally, make sure the 'TobiiStream.exe' is 
 running and displaying gaze data. You can
 download this application from:
-http://hci.soc.napier.ac.uk/GazeTrack/TobiiStream.zip
+http://web.tecnico.ulisboa.pt/augusto.esteves/GazeTrack/TobiiStream.zip
 -
 You also need to install the zmq Pythong library
 before you start: http://zeromq.org/bindings:python
 
 by Augusto Esteves
-http://hci.soc.napier.ac.uk
+http://web.tecnico.ulisboa.pt/augusto.esteves/
 https://github.com/AugustoEst/gazetrack
 '''
 
