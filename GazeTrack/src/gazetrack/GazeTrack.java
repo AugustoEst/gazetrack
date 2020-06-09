@@ -9,7 +9,7 @@ import processing.core.*;
  * 
  * Before you start, make sure the 'TobiiStream.exe' is running and 
  * displaying gaze data. You can download this application from:
- * http://hci.soc.napier.ac.uk/GazeTrack/TobiiStream.zip
+ * http://web.tecnico.ulisboa.pt/augusto.esteves/GazeTrack/TobiiStream.zip
  *
  * @example Basic
  */
