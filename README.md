@@ -1,7 +1,5 @@
 ## How to install GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/262d7e362e1a44c89b2c242c33cacf66)](https://www.codacy.com/app/augustoest/gazetrack?utm_source=github.com&utm_medium=referral&utm_content=AugustoEst/gazetrack&utm_campaign=badger)
-
 ### Install with the Contribution Manager
 
 Add contributed Libraries by selecting the menu item _Sketch_ → _Import Library..._ → _Add Library..._ This will open the Contribution Manager, where you can browse for GazeTrack: Eye-tracking for Processing (Tobii EyeX and 4C), or any other Library you want to install.
